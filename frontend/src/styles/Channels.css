@@ -1,0 +1,42 @@
+.channels-container {
+  width: 250px;
+  background: #2C3E50;
+  color: white;
+  padding: 1.5rem;
+  border-right: 1px solid #1A1A1A;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.channels-container h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.channels-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.channel-item {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'Inter', sans-serif;
+  color: #CCC;
+}
+
+.channel-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.channel-item.active {
+  background: #6B46C1;
+  color: white;
+  font-weight: 600;
+}

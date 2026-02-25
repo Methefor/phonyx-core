@@ -8,14 +8,29 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
-  }
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:3002',
+      process.env.CORS_ORIGIN || 'http://localhost:3000'
+    ],
+    methods: ['GET', 'POST'],
+    credentials: true
+  },
+  transports: ['websocket', 'polling']
 });
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3002',
+    process.env.CORS_ORIGIN || 'http://localhost:3000'
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -66,6 +81,6 @@ server.listen(PORT, () => {
 🚀 PHONYX Backend Server Running
 📍 http://localhost:${PORT}
 🔗 WebSocket: ws://localhost:${PORT}
-🌍 CORS Origin: ${process.env.CORS_ORIGIN}
+🌍 CORS Origins: http://localhost:3000, http://localhost:3002
   `);
 });
